@@ -13,7 +13,7 @@
     Object.entries(screens).forEach(([key, el]) => el.classList.toggle("hidden", key !== name));
   }
 
-  // ---------- LOGIN ----------
+  // ---------- CONNEXION ----------
   const loginForm = document.getElementById("loginForm");
   const pwInput = document.getElementById("pwInput");
   const loginError = document.getElementById("loginError");
@@ -28,11 +28,11 @@
       sessionStorage.setItem(SS_PW, pw);
       initDashboard();
     } catch (err) {
-      loginError.textContent = "Verkeerd wachtwoord.";
+      loginError.textContent = "Mot de passe incorrect.";
     }
   });
 
-  // ---------- SHARE LINK ----------
+  // ---------- LIEN À PARTAGER ----------
   function setupShareLink() {
     const link = window.location.origin + "/";
     document.getElementById("shareLink").textContent = link;
@@ -43,10 +43,10 @@
         await navigator.clipboard.writeText(link);
         const btn = document.getElementById("copyLinkBtn");
         const original = btn.textContent;
-        btn.textContent = "Gekopieerd ✓";
+        btn.textContent = "Copié ✓";
         setTimeout(() => (btn.textContent = original), 1500);
       } catch (e) {
-        /* clipboard kan geblokkeerd zijn; link staat al zichtbaar */
+        /* le presse-papiers peut être bloqué ; le lien reste visible à l'écran */
       }
     });
   }
@@ -72,13 +72,13 @@
   }
 
   document.getElementById("resetProgressBtn").addEventListener("click", () => {
-    if (confirm("Scores en voortgang resetten? Deelnemers blijven ingeschreven.")) doAction("resetProgress");
+    if (confirm("Réinitialiser les scores et la progression ? Les participants restent inscrits.")) doAction("resetProgress");
   });
   document.getElementById("resetAllBtn").addEventListener("click", () => {
-    if (confirm("Alles resetten, inclusief alle deelnemers?")) doAction("resetAll");
+    if (confirm("Tout réinitialiser, y compris tous les participants ?")) doAction("resetAll");
   });
 
-  // ---------- RENDER ----------
+  // ---------- AFFICHAGE ----------
   const phasePill = document.getElementById("phasePill");
   const hostRoundBadge = document.getElementById("hostRoundBadge");
   const hostRoundName = document.getElementById("hostRoundName");
@@ -90,11 +90,11 @@
   const hostControls = document.getElementById("hostControls");
 
   const PHASE_LABELS = {
-    lobby: "Wachtruimte",
-    question: "Vraag actief",
-    reveal: "Antwoord onthuld",
-    leaderboard: "Tussenstand",
-    ended: "Afgelopen",
+    lobby: "Salle d'attente",
+    question: "Question en cours",
+    reveal: "Réponse dévoilée",
+    leaderboard: "Classement",
+    ended: "Terminé",
   };
 
   function render(data) {
@@ -102,10 +102,10 @@
 
     hostRoundBadge.className = "round-badge" + (data.roundAccent ? " accent-" + data.roundAccent : "");
     hostRoundBadge.querySelector(".emoji").textContent = data.roundEmoji || "🌌";
-    hostRoundName.textContent = data.roundName || "Wachtruimte";
+    hostRoundName.textContent = data.roundName || "Salle d'attente";
     hostQuestionCount.textContent =
       data.phase === "question" || data.phase === "reveal"
-        ? `Vraag ${data.questionIndex + 1} / ${data.totalInRound}`
+        ? `Question ${data.questionIndex + 1} / ${data.totalInRound}`
         : "";
 
     hostLobbyView.classList.add("hidden");
@@ -115,7 +115,7 @@
 
     if (data.phase === "lobby") {
       hostLobbyView.classList.remove("hidden");
-      document.getElementById("lobbyParticipantCount").textContent = `${data.totalParticipants} deelnemer(s) ingeschreven`;
+      document.getElementById("lobbyParticipantCount").textContent = `${data.totalParticipants} participant(s) inscrit(s)`;
     } else if (data.phase === "question" || data.phase === "reveal") {
       hostQuestionView.classList.remove("hidden");
       renderHostQuestion(data);
@@ -154,7 +154,7 @@
       list.appendChild(fact);
     }
 
-    document.getElementById("hostAnsweredCount").textContent = `${data.answeredCount} / ${data.totalParticipants} deelnemers hebben geantwoord`;
+    document.getElementById("hostAnsweredCount").textContent = `${data.answeredCount} / ${data.totalParticipants} participants ont répondu`;
   }
 
   function renderControls(data) {
@@ -169,17 +169,17 @@
     };
 
     if (data.phase === "lobby") {
-      addBtn("▶️ Start de quiz", "start", "btn-gold");
+      addBtn("▶️ Démarrer le quiz", "start", "btn-gold");
     } else if (data.phase === "question") {
-      addBtn("👁️ Antwoord onthullen", "reveal", "btn-gold");
+      addBtn("👁️ Révéler la réponse", "reveal", "btn-gold");
     } else if (data.phase === "reveal") {
       const isLastInRound = data.questionIndex + 1 >= data.totalInRound;
-      addBtn(isLastInRound ? "🏆 Naar tussenstand" : "➡️ Volgende vraag", "next", "btn-gold");
+      addBtn(isLastInRound ? "🏆 Voir le classement" : "➡️ Question suivante", "next", "btn-gold");
     } else if (data.phase === "leaderboard") {
       const isLastRound = data.roundIndex + 1 >= data.totalRounds;
-      addBtn(isLastRound ? "🎊 Quiz afronden" : "➡️ Volgende ronde", "next", "btn-gold");
+      addBtn(isLastRound ? "🎊 Terminer le quiz" : "➡️ Manche suivante", "next", "btn-gold");
     } else if (data.phase === "ended") {
-      addBtn("🔁 Nieuwe ronde spelen (zelfde spelers)", "resetProgress", "btn-secondary");
+      addBtn("🔁 Rejouer (mêmes participants)", "resetProgress", "btn-secondary");
     }
   }
 
@@ -187,7 +187,7 @@
     const el = document.getElementById("participantsList");
     el.innerHTML = "";
     if (!participants.length) {
-      el.innerHTML = '<p class="small-note">Nog niemand ingeschreven.</p>';
+      el.innerHTML = '<p class="small-note">Aucun participant inscrit pour l\'instant.</p>';
       return;
     }
     participants.forEach((p) => {
@@ -197,9 +197,9 @@
         <span class="status-dot ${p.hasAnsweredCurrent ? "answered" : ""}"></span>
         <span class="p-name">${escapeHtml(p.name)}</span>
         <span class="p-score">${p.score} pt</span>
-        <button class="kick-btn" title="Verwijder deelnemer">✕</button>`;
+        <button class="kick-btn" title="Supprimer le participant">✕</button>`;
       row.querySelector(".kick-btn").addEventListener("click", () => {
-        if (confirm(`${p.name} verwijderen uit de quiz?`)) doAction("kick", { participantId: p.id });
+        if (confirm(`Supprimer ${p.name} du quiz ?`)) doAction("kick", { participantId: p.id });
       });
       el.appendChild(row);
     });
@@ -229,7 +229,7 @@
     return div.innerHTML;
   }
 
-  // ---------- POLLING ----------
+  // ---------- SONDAGE (POLLING) ----------
   async function refresh() {
     try {
       const data = await apiGet("/host-state", { "x-host-password": password });
@@ -256,7 +256,7 @@
     pollTimer = setInterval(refresh, 1500);
   }
 
-  // ---------- INIT ----------
+  // ---------- INITIALISATION ----------
   if (password) {
     initDashboard();
   } else {

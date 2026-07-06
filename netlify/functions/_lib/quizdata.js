@@ -1,6 +1,7 @@
-// Volledige vragenbank van de Scandinavië-quiz.
-// Let op: dit bestand wordt NIET naar de deelnemers-client gestuurd (alleen server-side
-// gebruikt door de functions), zodat antwoorden niet vooraf zichtbaar zijn.
+// Banque de questions complète du quiz Scandinavie.
+// Attention : ce fichier n'est JAMAIS envoyé aux clients participants (uniquement
+// utilisé côté serveur par les functions), afin que les réponses ne soient pas
+// visibles à l'avance.
 
 export const ROUNDS = [
   {
@@ -54,15 +55,10 @@ export const ROUNDS = [
         funFact: `Ce cadeau symbolique est offert chaque année depuis 1947.`,
       },
       {
-        prompt: `Quelle est la particularité du village norvégien « Hell » ?`,
-        options: [
-          `Il compte plus de rennes que d'habitants`,
-          `Il se trouve dans un cratère`,
-          `Son nom signifie « enfer » et il gèle chaque hiver`,
-          `On y parle une langue unique`,
-        ],
-        correctIndex: 2,
-        funFact: `Le village est célèbre pour l'expression anglaise humoristique « Hell freezes over » (« l'enfer gèle »), car il gèle littéralement en hiver.`,
+        prompt: `Dans quel village norvégien vaut-il mieux éviter d'atterrir ?`,
+        options: [`Hell`, `Merde`, `Stink`, `Moche`],
+        correctIndex: 0,
+        funFact: `Le village de Hell existe bel et bien, près de Trondheim, et il gèle littéralement chaque hiver, d'où le clin d'œil à l'expression anglaise « Hell freezes over » (« l'enfer gèle »). Les touristes adorent se prendre en photo devant le panneau. Les autres noms, eux, sont purement inventés pour l'occasion !`,
       },
       {
         prompt: `Qu'est-ce que la « slow TV » en Norvège ?`,
@@ -148,10 +144,15 @@ export const ROUNDS = [
         funFact: `Le nom vient de la mythologie nordique et signifie littéralement « la maison des géants ».`,
       },
       {
-        prompt: `Quelle est cette célèbre prison norvégienne ouverte sur un îlot où les détenus cultivent et soignent des animaux ?`,
-        options: [`Halden`, `Bastøy`, `Ringerike`, `Vardø`],
+        prompt: `Qu'est-ce qui rend la prison norvégienne de Bastøy si particulière ?`,
+        options: [
+          `Elle se trouve entièrement sous terre, dans une ancienne mine`,
+          `C'est une prison-île où les détenus vivent en semi-liberté, cultivent la terre et s'occupent d'animaux`,
+          `C'est la prison la plus surveillée de toute la Scandinavie`,
+          `Elle a été transformée en hôtel de luxe pour touristes`,
+        ],
         correctIndex: 1,
-        funFact: `Bastøy est une prison écologique où les détenus vivent en semi-liberté et ont un taux de récidive très faible.`,
+        funFact: `Bastøy est considérée comme l'une des prisons les plus humaines au monde : les détenus y vivent en semi-liberté sur une île, cultivent leur nourriture et s'occupent d'animaux. Le taux de récidive y est parmi les plus bas de la planète.`,
       },
       {
         prompt: `Quelle créature fantastique est très présente dans le folklore norvégien ?`,
@@ -164,12 +165,6 @@ export const ROUNDS = [
         options: [`Bretagne`, `Normandie`, `Alsace`, `Picardie`],
         correctIndex: 1,
         funFact: `Les Vikings s'y sont installés au IXe siècle et ont laissé une forte influence culturelle et linguistique.`,
-      },
-      {
-        prompt: `Vrai ou faux : les Vikings valorisaient particulièrement le métier de timonier et de charpentier.`,
-        options: [`Vrai`, `Faux`],
-        correctIndex: 0,
-        funFact: `Le timonier et le charpentier étaient des métiers essentiels pour construire des navires et assurer les expéditions.`,
       },
       {
         prompt: `Qu'est-ce qu'un drakkar ?`,
@@ -291,15 +286,10 @@ export const ROUNDS = [
         funFact: `Markus Persson, alias « Notch », a créé Minecraft, l'un des jeux les plus vendus au monde.`,
       },
       {
-        prompt: `Qu'est-ce que la « döstädning » ?`,
-        options: [
-          `Un grand nettoyage de printemps`,
-          `Le « nettoyage de la mort », qui consiste à trier ses affaires avant de mourir`,
-          `Une tradition de purification avant un mariage`,
-          `Un rituel funéraire viking`,
-        ],
-        correctIndex: 1,
-        funFact: `Ce concept, popularisé par un livre suédois à succès, invite à désencombrer sa vie pour ne pas laisser ce fardeau à ses proches.`,
+        prompt: `Vrai ou faux : jusqu'en 1967, les Suédois roulaient à gauche.`,
+        options: [`Vrai`, `Faux`],
+        correctIndex: 0,
+        funFact: `Le 3 septembre 1967, lors du célèbre Dagen H, tout le pays est passé de la conduite à gauche à la conduite à droite en une seule journée.`,
       },
       {
         prompt: `Qui a créé le personnage de Fifi Brindacier (Pippi Långstrump) ?`,
@@ -416,12 +406,6 @@ export const ROUNDS = [
         funFact: `Environ 7 000 prénoms sont pré-approuvés au Danemark. Pour tout autre choix, il faut une autorisation officielle.`,
       },
       {
-        prompt: `Vrai ou faux : au Danemark, il est légal de brûler le drapeau danois, mais illégal de brûler un drapeau étranger.`,
-        options: [`Vrai`, `Faux`],
-        correctIndex: 0,
-        funFact: `Cette particularité juridique surprend souvent les visiteurs, habitués à l'inverse dans la plupart des pays.`,
-      },
-      {
         prompt: `Qu'est-ce que le « smørrebrød » ?`,
         options: [
           `Une pâtisserie à la cannelle`,
@@ -489,10 +473,10 @@ export const ROUNDS = [
         funFact: `À l'origine, un vrai chat était enfermé dans le tonneau ; aujourd'hui, seule une image de chat orne le tonneau, rempli de bonbons.`,
       },
       {
-        prompt: `Vrai ou faux : le Danemark figure très régulièrement parmi les pays les plus heureux du monde selon le World Happiness Report.`,
-        options: [`Vrai`, `Faux`],
-        correctIndex: 0,
-        funFact: `Les Danois ont même un mot pour la satisfaction au travail : « arbejdsglæde », littéralement « la joie du travail ».`,
+        prompt: `Aux Jeux olympiques, le Danemark a remporté beaucoup plus de médailles…`,
+        options: [`aux Jeux d'hiver`, `aux Jeux d'été`],
+        correctIndex: 1,
+        funFact: `Le Danemark est très performant aux Jeux d'été, mais n'a remporté qu'une seule médaille d'argent aux Jeux d'hiver.`,
       },
     ],
   },
@@ -581,12 +565,6 @@ export const ROUNDS = [
         funFact: `Les aurores boréales sont particulièrement visibles en Laponie, en Islande et dans le nord de la Norvège, surtout entre septembre et mars.`,
       },
       {
-        prompt: `Quel meuble suédois mondialement connu porte le nom d'un archipel et non d'une ville ?`,
-        options: [`Billy`, `Klippan`, `Malm`, `Poäng`],
-        correctIndex: 3,
-        funFact: `Le système de nommage IKEA suit des règles précises par catégorie de produit (canapés, tapis, fauteuils...), un vrai casse-tête scandinave.`,
-      },
-      {
         prompt: `Vrai ou faux : la Norvège, la Suède et le Danemark partagent une intelligibilité linguistique partielle, permettant à leurs habitants de se comprendre approximativement à l'oral.`,
         options: [`Vrai`, `Faux`],
         correctIndex: 0,
@@ -598,8 +576,8 @@ export const ROUNDS = [
 
 export const TOTAL_QUESTIONS = ROUNDS.reduce((sum, r) => sum + r.questions.length, 0);
 
-// Snelheids-score: 1000 punten bij een direct antwoord, geleidelijk dalend naar
-// een bodem van 500 punten na 20 seconden. Fout antwoord = 0 punten.
+// Score basé sur la vitesse : 1000 points pour une réponse immédiate, dégressif
+// jusqu'à un plancher de 500 points après 20 secondes. Mauvaise réponse = 0 point.
 export function computePoints(elapsedMs) {
   const seconds = elapsedMs / 1000;
   const points = Math.round(1000 - Math.min(seconds, 20) * 25);

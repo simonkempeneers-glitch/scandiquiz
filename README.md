@@ -1,6 +1,6 @@
 # 🇳🇴🇸🇪🇩🇰 Quiz Scandinavie — live webquiz voor Netlify
 
-Een volledig werkende, live multiplayer-quiz: deelnemers doen mee via één link op hun telefoon, jij bestuurt als quizmaster het tempo via een apart dashboard. 59 vragen verdeeld over 4 rondes (Norvège, Suède, Danemark, Bonus Scandinavie).
+Een volledig werkende, live multiplayer-quiz: deelnemers doen mee via één link op hun telefoon, jij bestuurt als quizmaster het tempo via een apart dashboard. 56 vragen verdeeld over 4 rondes (Norvège, Suède, Danemark, Bonus Scandinavie). De volledige interface (deelnemers + quizmaster) is in het Frans.
 
 ## Hoe het werkt
 
@@ -63,7 +63,7 @@ Dit start de site + functions lokaal (meestal op `http://localhost:8888`) met Ne
 
 ## Vragen aanpassen
 
-Alle 59 vragen (incl. juiste antwoord en "bon à savoir"-weetje) staan in `netlify/functions/_lib/quizdata.js`. Dit bestand wordt nooit rechtstreeks naar deelnemers gestuurd, dus antwoorden kunnen niet vooraf worden afgekeken via de browser-devtools.
+Alle 56 vragen (incl. juiste antwoord en "bon à savoir"-weetje) staan in `netlify/functions/_lib/quizdata.js`. Dit bestand wordt nooit rechtstreeks naar deelnemers gestuurd, dus antwoorden kunnen niet vooraf worden afgekeken via de browser-devtools.
 
 ## Projectstructuur
 

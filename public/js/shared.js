@@ -1,10 +1,10 @@
-// Kleine gedeelde helpers voor fetch-calls.
+// Petits utilitaires partagés pour les appels fetch.
 const API_BASE = "/api";
 
 async function apiGet(path, headers) {
   const res = await fetch(API_BASE + path, { headers });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || `Fout (${res.status})`);
+  if (!res.ok) throw new Error(data.error || `Erreur (${res.status})`);
   return data;
 }
 
@@ -16,7 +16,7 @@ async function apiPost(path, body, headers) {
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    const err = new Error(data.error || `Fout (${res.status})`);
+    const err = new Error(data.error || `Erreur (${res.status})`);
     err.status = res.status;
     throw err;
   }

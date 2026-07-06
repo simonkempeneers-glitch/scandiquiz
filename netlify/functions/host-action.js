@@ -9,7 +9,7 @@ export default async (req) => {
   const { password, action, payload } = body;
 
   if (!checkHostPassword(password)) {
-    return json({ error: "Verkeerd quizmaster-wachtwoord." }, 401);
+    return json({ error: "Mot de passe quizmaster incorrect." }, 401);
   }
 
   let state = await getState();
@@ -89,7 +89,7 @@ export default async (req) => {
       break;
     }
     default:
-      return json({ error: "Onbekende actie." }, 400);
+      return json({ error: "Action inconnue." }, 400);
   }
 
   await setState(state);

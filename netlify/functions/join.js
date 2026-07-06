@@ -7,12 +7,12 @@ export default async (req) => {
 
   const body = await req.json().catch(() => ({}));
   const rawName = (body.name || "").toString().trim().slice(0, 24);
-  if (!rawName) return json({ error: "Vul een naam in." }, 400);
+  if (!rawName) return json({ error: "Merci d'indiquer un prénom." }, 400);
 
   const state = await getState();
 
   if (state.phase !== "lobby") {
-    return json({ error: "De quiz is al gestart. Vraag de quizmaster om te resetten of wacht op de volgende sessie." }, 409);
+    return json({ error: "Le quiz a déjà commencé. Demande au quizmaster de réinitialiser, ou attends la prochaine session." }, 409);
   }
 
   const existingNames = Object.values(state.participants).map((p) => p.name.toLowerCase());

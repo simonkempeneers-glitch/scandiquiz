@@ -11,24 +11,24 @@ export default async (req) => {
   const state = await getState();
 
   if (state.phase !== "question") {
-    return json({ error: "Er is nu geen vraag open om op te antwoorden." }, 400);
+    return json({ error: "Aucune question n'est ouverte pour le moment." }, 400);
   }
 
   const participant = state.participants[participantId];
-  if (!participant) return json({ error: "Onbekende deelnemer. Doe opnieuw mee." }, 404);
+  if (!participant) return json({ error: "Participant inconnu. Rejoins la partie à nouveau." }, 404);
 
   const currentQid = `${state.roundIndex}-${state.questionIndex}`;
   if (questionId !== currentQid) {
-    return json({ error: "Deze vraag is niet meer actief." }, 409);
+    return json({ error: "Cette question n'est plus active." }, 409);
   }
   if (participant.answers[currentQid]) {
-    return json({ error: "Je hebt deze vraag al beantwoord." }, 409);
+    return json({ error: "Tu as déjà répondu à cette question." }, 409);
   }
 
   const round = ROUNDS[state.roundIndex];
   const question = round.questions[state.questionIndex];
   if (typeof choice !== "number" || choice < 0 || choice >= question.options.length) {
-    return json({ error: "Ongeldig antwoord." }, 400);
+    return json({ error: "Réponse invalide." }, 400);
   }
 
   const now = Date.now();

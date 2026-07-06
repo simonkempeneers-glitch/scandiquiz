@@ -35,7 +35,7 @@
     }
   }
 
-  // ---------- JOIN ----------
+  // ---------- INSCRIPTION ----------
   const joinForm = document.getElementById("joinForm");
   const nameInput = document.getElementById("nameInput");
   const joinBtn = document.getElementById("joinBtn");
@@ -62,7 +62,7 @@
     }
   });
 
-  // ---------- RENDER: QUESTION ----------
+  // ---------- AFFICHAGE : QUESTION ----------
   const questionRoundBadge = document.getElementById("questionRoundBadge");
   const questionRoundName = document.getElementById("questionRoundName");
   const progressLine = document.getElementById("progressLine");
@@ -123,14 +123,14 @@
       hasAnsweredCurrent = true;
       answeredNote.classList.remove("hidden");
     } catch (err) {
-      // Vraag kan intussen gesloten zijn; volgende poll corrigeert de UI.
+      // La question est peut-être déjà close ; le prochain sondage corrigera l'affichage.
       console.warn(err.message);
     } finally {
       submitting = false;
     }
   }
 
-  // ---------- RENDER: REVEAL ----------
+  // ---------- AFFICHAGE : RÉVÉLATION ----------
   const revealRoundBadge = document.getElementById("revealRoundBadge");
   const revealRoundName = document.getElementById("revealRoundName");
   const revealQuestionText = document.getElementById("revealQuestionText");
@@ -167,21 +167,21 @@
       resultBanner.classList.remove("hidden");
       if (data.yourAnswer.correct) {
         resultBanner.className = "result-banner good";
-        resultBanner.textContent = `✅ Goed! +${data.yourAnswer.points} punten`;
+        resultBanner.textContent = `✅ Bonne réponse ! +${data.yourAnswer.points} points`;
       } else {
         resultBanner.className = "result-banner bad";
-        resultBanner.textContent = `❌ Helaas, dat was niet juist.`;
+        resultBanner.textContent = `❌ Dommage, ce n'était pas la bonne réponse.`;
       }
     } else {
       resultBanner.classList.remove("hidden");
       resultBanner.className = "result-banner bad";
-      resultBanner.textContent = `⏱️ Je hebt niet op tijd geantwoord.`;
+      resultBanner.textContent = `⏱️ Tu n'as pas répondu à temps.`;
     }
 
     showScreen("reveal");
   }
 
-  // ---------- RENDER: LEADERBOARD ----------
+  // ---------- AFFICHAGE : CLASSEMENT ----------
   function renderLeaderboardInto(el, leaderboard) {
     el.innerHTML = "";
     const maxScore = Math.max(1, ...leaderboard.map((p) => p.score));
@@ -200,7 +200,7 @@
   }
 
   function renderLeaderboard(data) {
-    document.getElementById("leaderboardSubtitle").textContent = `Na ronde: ${data.roundName || ""}`;
+    document.getElementById("leaderboardSubtitle").textContent = `Après la manche : ${data.roundName || ""}`;
     renderLeaderboardInto(document.getElementById("leaderboardList"), data.leaderboard || []);
     showScreen("leaderboard");
   }
@@ -210,8 +210,8 @@
     const list = data.leaderboard || [];
     const winner = list[0];
     document.getElementById("endedSubtitle").textContent = winner
-      ? `🏆 ${winner.name} wint de quiz met ${winner.score} punten!`
-      : "Bedankt voor het meespelen.";
+      ? `🏆 ${winner.name} remporte le quiz avec ${winner.score} points !`
+      : "Merci d'avoir participé.";
     showScreen("ended");
     maybeConfetti();
   }
@@ -241,14 +241,14 @@
     setTimeout(() => wrap.remove(), 6000);
   }
 
-  // ---------- POLLING ----------
+  // ---------- SONDAGE (POLLING) ----------
   async function poll() {
     try {
       const url = `/state?participantId=${encodeURIComponent(participantId)}`;
       const data = await apiGet(url);
 
       if (data.unknownParticipant) {
-        // Server werd gereset: terug naar join-scherm.
+        // Le serveur a été réinitialisé : retour à l'écran d'inscription.
         localStorage.removeItem(LS_ID);
         localStorage.removeItem(LS_NAME);
         stopPolling();
@@ -286,12 +286,12 @@
           break;
       }
     } catch (err) {
-      console.warn("poll error", err.message);
+      console.warn("erreur de sondage", err.message);
     }
   }
 
   function startPolling() {
-    document.getElementById("waitingName").textContent = participantName || "deelnemer";
+    document.getElementById("waitingName").textContent = participantName || "participant";
     poll();
     if (pollTimer) clearInterval(pollTimer);
     pollTimer = setInterval(poll, 1500);
@@ -302,7 +302,7 @@
     pollTimer = null;
   }
 
-  // ---------- INIT ----------
+  // ---------- INITIALISATION ----------
   if (participantId && participantName) {
     startPolling();
   } else {

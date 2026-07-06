@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="nl">
+<html lang="fr">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -16,47 +16,47 @@
 
   <div class="app">
     <div class="topbar" style="max-width:1080px;">
-      <div class="brand"><span class="flags">🎙️</span> Quizmaster-bord</div>
+      <div class="brand"><span class="flags">🎙️</span> Espace Quizmaster</div>
       <div class="phase-pill" id="phasePill">—</div>
     </div>
 
     <main class="host-body">
-      <!-- LOGIN -->
+      <!-- CONNEXION -->
       <section class="screen" id="screen-login">
         <div class="card" style="max-width:420px; margin:0 auto;">
-          <h1 class="title-xl" style="font-size:1.6rem;">Quizmaster login</h1>
+          <h1 class="title-xl" style="font-size:1.6rem;">Connexion quizmaster</h1>
           <form id="loginForm" style="display:flex; flex-direction:column; gap:1rem; margin-top:1rem;">
             <div class="field">
-              <label for="pwInput">Wachtwoord</label>
+              <label for="pwInput">Mot de passe</label>
               <input type="password" id="pwInput" autocomplete="off" required />
             </div>
-            <button class="btn" type="submit">Inloggen</button>
+            <button class="btn" type="submit">Se connecter</button>
             <p class="error-text" id="loginError"></p>
           </form>
         </div>
       </section>
 
-      <!-- DASHBOARD -->
+      <!-- TABLEAU DE BORD -->
       <section class="screen hidden" id="screen-dashboard" style="max-width:1080px;">
         <div class="card">
-          <p class="section-label">Deel deze link met de deelnemers</p>
+          <p class="section-label">Partage ce lien avec les participants</p>
           <div class="share-box">
             <div class="share-link" id="shareLink">…</div>
-            <button class="btn btn-secondary" id="copyLinkBtn" style="width:auto;">Kopieer link</button>
+            <button class="btn btn-secondary" id="copyLinkBtn" style="width:auto;">Copier le lien</button>
           </div>
-          <div class="qr-box"><img id="qrImg" width="140" height="140" alt="QR-code naar de quiz" /></div>
+          <div class="qr-box"><img id="qrImg" width="140" height="140" alt="QR-code vers le quiz" /></div>
         </div>
 
         <div class="host-grid" style="margin-top:1.5rem;">
           <div class="card">
             <div class="host-question-header">
-              <div class="round-badge" id="hostRoundBadge"><span class="emoji">🌌</span> <span id="hostRoundName">Wachtruimte</span></div>
+              <div class="round-badge" id="hostRoundBadge"><span class="emoji">🌌</span> <span id="hostRoundName">Salle d'attente</span></div>
               <div class="small-note" id="hostQuestionCount"></div>
             </div>
 
             <div id="hostLobbyView">
-              <p class="question-text" style="font-size:1.3rem;">Klaar om te beginnen?</p>
-              <p class="subtitle" id="lobbyParticipantCount">0 deelnemers ingeschreven</p>
+              <p class="question-text" style="font-size:1.3rem;">Prêt à commencer ?</p>
+              <p class="subtitle" id="lobbyParticipantCount">0 participant(s) inscrit(s)</p>
             </div>
 
             <div id="hostQuestionView" class="hidden">
@@ -66,12 +66,12 @@
             </div>
 
             <div id="hostLeaderboardView" class="hidden">
-              <p class="question-text" style="font-size:1.3rem;">🏆 Tussenstand</p>
+              <p class="question-text" style="font-size:1.3rem;">🏆 Classement</p>
               <div class="leaderboard-list" id="hostLeaderboardList"></div>
             </div>
 
             <div id="hostEndedView" class="hidden">
-              <p class="question-text" style="font-size:1.3rem;">🎊 Quiz afgelopen</p>
+              <p class="question-text" style="font-size:1.3rem;">🎊 Quiz terminé</p>
               <div class="leaderboard-list" id="hostFinalLeaderboardList"></div>
             </div>
 
@@ -81,20 +81,20 @@
           </div>
 
           <div class="card">
-            <p class="section-label">Deelnemers (<span id="participantTotal">0</span>)</p>
+            <p class="section-label">Participants (<span id="participantTotal">0</span>)</p>
             <div class="participants-list" id="participantsList"></div>
             <div class="divider"></div>
             <div class="btn-row">
-              <button class="btn btn-secondary" id="resetProgressBtn">Reset voortgang</button>
-              <button class="btn btn-danger" id="resetAllBtn">Reset alles</button>
+              <button class="btn btn-secondary" id="resetProgressBtn">Réinitialiser la progression</button>
+              <button class="btn btn-danger" id="resetAllBtn">Tout réinitialiser</button>
             </div>
-            <p class="small-note" style="margin-top:0.6rem;">"Reset voortgang" behoudt de deelnemerslijst maar zet scores en de ronde terug op start. "Reset alles" verwijdert ook alle deelnemers.</p>
+            <p class="small-note" style="margin-top:0.6rem;">« Réinitialiser la progression » conserve la liste des participants, mais remet les scores et la manche à zéro. « Tout réinitialiser » supprime aussi tous les participants.</p>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="app-footer">Alleen jij (quizmaster) hebt deze pagina nodig — deel enkel de deelnemerslink hierboven.</footer>
+    <footer class="app-footer">Toi seul (le quizmaster) as besoin de cette page, partage uniquement le lien des participants ci-dessus.</footer>
   </div>
 
   <script src="/js/shared.js"></script>
