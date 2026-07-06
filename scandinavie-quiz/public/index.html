@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Quiz Scandinavie 🇳🇴🇸🇪🇩🇰</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="aurora-bg"></div>
+  <svg class="mountains" viewBox="0 0 1200 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,200 0,120 150,40 300,110 430,60 600,130 760,50 900,120 1050,70 1200,130 1200,200" fill="#0b1f3d" />
+    <polygon points="0,200 0,150 200,90 380,150 560,100 720,160 900,100 1080,150 1200,110 1200,200" fill="#050d1d" />
+  </svg>
+
+  <div class="app">
+    <div class="topbar">
+      <div class="brand"><span class="flags">🇳🇴🇸🇪🇩🇰</span> Quiz Scandinavie</div>
+      <div class="score-pill hidden" id="scorePill">
+        <span>⭐ Score</span>
+        <span class="score-value" id="scoreValue">0</span>
+      </div>
+    </div>
+
+    <main>
+      <!-- JOIN -->
+      <section class="screen" id="screen-join">
+        <div class="card" style="text-align:center;">
+          <h1 class="title-xl">Doe mee met de Scandinavië-quiz!</h1>
+          <p class="subtitle">Vier rondes vol ludieke weetjes over Noorwegen, Zweden, Denemarken en de rest van Scandinavië.</p>
+        </div>
+        <div class="card">
+          <form id="joinForm" style="display:flex; flex-direction:column; gap:1rem;">
+            <div class="field">
+              <label for="nameInput">Jouw naam</label>
+              <input type="text" id="nameInput" placeholder="Bijv. Simon" maxlength="24" autocomplete="off" required />
+            </div>
+            <button class="btn" type="submit" id="joinBtn">Meedoen 🚀</button>
+            <p class="error-text" id="joinError"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- WAITING -->
+      <section class="screen hidden" id="screen-waiting">
+        <div class="card" style="text-align:center;">
+          <h2 class="title-xl" style="font-size:1.6rem;">Welkom, <span id="waitingName">deelnemer</span>! 🎉</h2>
+          <p class="subtitle">De quizmaster start zo dadelijk de eerste ronde.</p>
+          <p class="waiting-note" style="margin-top:1rem;">
+            <span class="dot-pulse"></span> <span id="waitingCount">0</span> deelnemer(s) aanwezig
+          </p>
+        </div>
+      </section>
+
+      <!-- QUESTION -->
+      <section class="screen hidden" id="screen-question">
+        <div class="round-badge" id="questionRoundBadge">
+          <span class="emoji">🇳🇴</span> <span id="questionRoundName">Norvège</span>
+        </div>
+        <div class="progress-line" id="progressLine"></div>
+        <div class="card">
+          <p class="question-text" id="questionText">…</p>
+          <div class="options-grid" id="optionsGrid" style="margin-top:1.5rem;"></div>
+        </div>
+        <p class="waiting-note hidden" id="answeredNote">
+          <span class="dot-pulse"></span> Antwoord verzonden. Wachten op de andere deelnemers…
+        </p>
+      </section>
+
+      <!-- REVEAL -->
+      <section class="screen hidden" id="screen-reveal">
+        <div class="round-badge" id="revealRoundBadge">
+          <span class="emoji">🇳🇴</span> <span id="revealRoundName">Norvège</span>
+        </div>
+        <div class="card">
+          <p class="question-text" id="revealQuestionText" style="margin-bottom:1.25rem;">…</p>
+          <div class="options-grid" id="revealOptionsGrid"></div>
+          <div class="result-banner hidden" id="resultBanner" style="margin-top:1.25rem;"></div>
+          <div class="fun-fact" style="margin-top:1.25rem;">
+            <strong>Bon à savoir —</strong> <span id="funFactText"></span>
+          </div>
+        </div>
+        <p class="waiting-note"><span class="dot-pulse"></span> De quizmaster gaat zo verder…</p>
+      </section>
+
+      <!-- LEADERBOARD -->
+      <section class="screen hidden" id="screen-leaderboard">
+        <div class="card" style="text-align:center;">
+          <h2 class="title-xl" style="font-size:1.7rem;">🏆 Tussenstand</h2>
+          <p class="subtitle" id="leaderboardSubtitle">Na deze ronde</p>
+        </div>
+        <div class="card">
+          <div class="leaderboard-list" id="leaderboardList"></div>
+        </div>
+        <p class="waiting-note"><span class="dot-pulse"></span> Wachten op de volgende ronde…</p>
+      </section>
+
+      <!-- ENDED -->
+      <section class="screen hidden" id="screen-ended">
+        <div class="card" style="text-align:center;">
+          <h2 class="title-xl">🎊 Quiz afgelopen!</h2>
+          <p class="subtitle" id="endedSubtitle">Bedankt voor het meespelen.</p>
+        </div>
+        <div class="card">
+          <div class="leaderboard-list" id="finalLeaderboardList"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">Gemaakt met ❤️ voor een ludieke avond Scandinavische trivia.</footer>
+  </div>
+
+  <script src="/js/shared.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
